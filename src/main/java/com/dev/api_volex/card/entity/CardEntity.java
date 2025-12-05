@@ -1,6 +1,7 @@
 package com.dev.api_volex.card.entity;
 
 import com.dev.api_volex.card.enumeration.CardType;
+import com.dev.api_volex.employee.entity.EmployeeEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -14,8 +15,9 @@ public class CardEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "employee_id", nullable = false)
-    private Long employeeId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id", nullable = false)
+    private EmployeeEntity employeeId;
 
     @Column(unique = true, nullable = false)
     private String cardNumber;
