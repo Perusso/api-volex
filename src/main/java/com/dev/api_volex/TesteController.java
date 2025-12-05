@@ -1,4 +1,4 @@
-package com.dev.api_volex.controller;
+package com.dev.api_volex;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
