@@ -26,4 +26,13 @@ public enum CardType {
         }
         throw new IllegalArgumentException("Tipo de cartão inválido: " + text);
     }
+
+    public static boolean isValid(String type) {
+        try {
+            fromString(type);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
 }
