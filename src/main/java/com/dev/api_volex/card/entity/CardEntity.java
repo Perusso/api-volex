@@ -132,4 +132,12 @@ public class CardEntity {
     public void setType(CardType type) {
         this.type = type;
     }
+
+    public Boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 }
