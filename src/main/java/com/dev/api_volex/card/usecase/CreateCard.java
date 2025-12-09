@@ -5,11 +5,11 @@ import com.dev.api_volex.card.usecase.adapter.CreateCardRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateCardUseCase {
+public class CreateCard {
 
     private final CreateCardRepository createCardRepository;
 
-    public CreateCardUseCase(CreateCardRepository createCardRepository) {
+    public CreateCard(CreateCardRepository createCardRepository) {
         this.createCardRepository = createCardRepository;
     }
 

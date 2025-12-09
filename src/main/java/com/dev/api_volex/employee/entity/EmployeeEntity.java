@@ -26,6 +26,6 @@ public class EmployeeEntity {
     @JoinColumn(name = "company_id", nullable = false)
     private CompanyEntity company;
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @Column(name = "created_at", nullable = true)
+    private LocalDateTime createdAt = null;
 }

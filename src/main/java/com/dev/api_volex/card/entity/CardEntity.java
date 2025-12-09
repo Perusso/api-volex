@@ -50,8 +50,8 @@ public class CardEntity {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = false;
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @Column(name = "created_at", nullable = true)
+    private LocalDateTime createdAt = null;
 
     public Long getId() {
         return id;
