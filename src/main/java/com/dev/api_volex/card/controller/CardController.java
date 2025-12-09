@@ -21,7 +21,6 @@ public class CardController {
     public CardResponse create(
             @RequestHeader("x-api-key") String apiKey,
             @RequestBody CreateCardRequest request) {
-        // Implementação
         return createCard.execute(apiKey, request);
     }
 }
