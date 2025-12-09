@@ -27,4 +27,44 @@ public class BusinessEntity {
 
     @OneToMany(mappedBy = "business", fetch = FetchType.LAZY)
     private List<PaymentEntity> payments;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BusinessType getType() {
+        return type;
+    }
+
+    public void setType(BusinessType type) {
+        this.type = type;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public List<PaymentEntity> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<PaymentEntity> payments) {
+        this.payments = payments;
+    }
 }
