@@ -2,7 +2,7 @@ package com.dev.api_volex.card.controller;
 
 import com.dev.api_volex.card.dto.CardResponse;
 import com.dev.api_volex.card.dto.CreateCardRequest;
-import com.dev.api_volex.card.usecase.CreateCardUseCase;
+import com.dev.api_volex.card.usecase.CreateCard;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/cards")
 public class CardController {
 
-    private final CreateCardUseCase createCardUseCase;
+    private final CreateCard createCard;
 
-    public CardController(CreateCardUseCase createCardUseCase) {
-        this.createCardUseCase = createCardUseCase;
+    public CardController(CreateCard createCard) {
+        this.createCard = createCard;
     }
 
     @PostMapping
@@ -22,6 +22,6 @@ public class CardController {
             @RequestHeader("x-api-key") String apiKey,
             @RequestBody CreateCardRequest request) {
         // Implementação
-        return createCardUseCase.execute(apiKey, request);
+        return createCard.execute(apiKey, request);
     }
 }
