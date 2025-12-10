@@ -23,6 +23,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/volex
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: password
+      JASYPT_ENCRYPTOR_PASSWORD: minhaSenhaSegura123
+      JASYPT_ENCRYPTOR_ALGORITHM: PBEWITHHMACSHA512ANDAES_256
 
 volumes:
   db_data:
