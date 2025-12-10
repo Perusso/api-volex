@@ -17,7 +17,7 @@ public class CardEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", nullable = false)
-    private EmployeeEntity employeeId;
+    private EmployeeEntity employee;
 
     @Column(unique = true, nullable = false)
     private String cardNumber;
@@ -131,6 +131,26 @@ public class CardEntity {
 
     public void setType(CardType type) {
         this.type = type;
+    }
+
+    public EmployeeEntity getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(EmployeeEntity employeeId) {
+        this.employee = employeeId;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Boolean isActive() {
