@@ -36,7 +36,7 @@ public class CreateCard {
     public CardResponse execute(String apiKey, CreateCardRequest request) {
         validateCardCreation(apiKey, request);
         GeneratedCardData generatedCardData = generateCardData(request);
-        CardEntity savedCard = persist(request, generatedCardData.cardNumber(), generatedCardData.cvv(), generatedCardData.cardholderName(), generatedCardData.expirationDate());
+        CardEntity savedCard = persist(request, generatedCardData.cardNumber(), generatedCardData.cvv(), generatedCardData.cardholderName(), generatedCardData.expirationDate(), generatedCardData.employee);
         return buildResponse(savedCard);
     }
 
@@ -48,7 +48,7 @@ public class CreateCard {
         validateApiKey(apiKey);
     }
 
-    private record GeneratedCardData(String cardNumber, String cvv, String expirationDate, String cardholderName) {
+    private record GeneratedCardData(String cardNumber, String cvv, String expirationDate, String cardholderName, EmployeeEntity employee) {
     }
 
     private GeneratedCardData generateCardData(CreateCardRequest request) {
@@ -57,10 +57,10 @@ public class CreateCard {
         String expirationDate = generateCreditCardData.generateExpirationDate();
         EmployeeEntity employee = getEmployee.findById(request.getEmployeeId());
         String cardholderName = formatCardholderName.format(employee.getFullName());
-        return new GeneratedCardData(cardNumber, cvv, expirationDate, cardholderName);
+        return new GeneratedCardData(cardNumber, cvv, expirationDate, cardholderName, employee);
     }
 
-    private CardEntity persist(CreateCardRequest request, String cardNumber, String cvv, String cardholderName, String expirationDate) {
+    private CardEntity persist(CreateCardRequest request, String cardNumber, String cvv, String cardholderName, String expirationDate, EmployeeEntity employee) {
         CardEntity entity = new CardEntity();
         entity.setCardNumber(cardNumber);
         String encryptedCvv = cvcEncryptor.encrypt(cvv);
@@ -70,6 +70,7 @@ public class CreateCard {
         entity.setType(CardType.fromString(request.getCardType()));
         entity.setBlocked(true);
         entity.setVirtual(false);
+        entity.setEmployee(employee);
         return cardRepository.save(entity);
     }
 
@@ -96,7 +97,7 @@ public class CreateCard {
 
     private void validateDuplicateCard(Long employeeId, String cardType) {
         CardType type = CardType.fromString(cardType);
-        boolean exists = cardRepository.existsByEmployeeIdAndType(employeeId, String.valueOf(type));
+        boolean exists = cardRepository.existsByEmployeeIdAndType(employeeId, type);
         if (exists) {
             throw new DuplicateCardException(employeeId, cardType);
         }
