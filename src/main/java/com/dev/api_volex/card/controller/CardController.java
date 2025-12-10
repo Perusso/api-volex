@@ -2,6 +2,7 @@ package com.dev.api_volex.card.controller;
 
 import com.dev.api_volex.card.dto.*;
 import com.dev.api_volex.card.usecase.*;
+import jdk.jfr.Description;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class CardController {
     }
 
     @PostMapping
+    @Description("Criar um novo cartão" )
     public ResponseEntity<CardResponse> create(
             @RequestHeader("x-api-key") String apiKey,
             @RequestBody CreateCardRequest request) {
@@ -34,6 +36,7 @@ public class CardController {
     }
 
     @PostMapping("/{cardId}/activate")
+    @Description("Ativar um cartão" )
     public ResponseEntity<ActivateCardResponse> activate(
             @PathVariable Long cardId,
             @RequestBody ActivateCardRequest request) {
@@ -43,6 +46,7 @@ public class CardController {
     }
 
     @PostMapping("/{cardId}/block")
+    @Description("Bloquear um cartão" )
     public ResponseEntity<BlockCardResponse> block(
             @PathVariable Long cardId,
             @RequestBody BlockCardRequest request) {
@@ -52,6 +56,7 @@ public class CardController {
     }
 
     @PostMapping("/{cardId}/unblock")
+    @Description("Desbloquear um cartão bloqueado" )
     public ResponseEntity<UnblockCardResponse> unblock(
             @PathVariable Long cardId,
             @RequestBody UnblockCardRequest request) {
@@ -61,6 +66,7 @@ public class CardController {
     }
 
     @GetMapping("/{cardId}/balance")
+    @Description("Obter o saldo de um cartão" )
     public ResponseEntity<CardBalanceResponse> getBalance(
             @PathVariable Long cardId) {
 
