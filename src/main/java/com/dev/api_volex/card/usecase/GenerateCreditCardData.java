@@ -22,7 +22,9 @@ public class GenerateCreditCardData {
     }
 
     public String generateCreditCardCvv() {
-        return faker.number().digits(3);
+        String cvv = faker.number().digits(3);
+        System.out.println("Generated CVV: " + cvv); // For debugging purposes
+        return cvv;
     }
 
     public String generateExpirationDate() {
